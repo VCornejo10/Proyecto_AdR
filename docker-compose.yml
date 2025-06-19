@@ -1,42 +1,40 @@
-version: "3.8"
-
 services:
   user-service:
-    build: ./user-service
+    build: ./user-service         # Construye la imagen Docker usando el Dockerfile en ./user-service
     volumes:
-      - ./user-service/data:/app/data
+      - ./user-service/data:/app/data  # Monta un volumen para persistencia de datos entre host y contenedor
     environment:
-      - FLASK_ENV=production
-      - USER_SERVICE_URL=http://user-service:5000  # variable para URL interna del user-service
+      - FLASK_ENV=production      # Variable de entorno para Flask indicando modo producción
+      - USER_SERVICE_URL=http://user-service:5000  # Variable para que la app conozca su propia URL interna en Docker
     networks:
-      - backend
+      - backend                  # Conecta este servicio a la red 'backend' para comunicación interna
     ports:
-      - "5001:5000"    # expone puerto 5001 en host, 5000 en contenedor
+      - "5001:5000"              # Expone el puerto 5000 del contenedor en el puerto 5001 del host (máquina local)
 
   task-service:
-    build: ./task-service
+    build: ./task-service         # Construye la imagen Docker usando el Dockerfile en ./task-service
     volumes:
-      - ./task-service/data:/app/data
+      - ./task-service/data:/app/data   # Monta volumen para persistencia de datos
     environment:
-      - USER_SERVICE_URL=http://task-service:5000  # variable para URL interna del task-service
-      - FLASK_ENV=production
+      - USER_SERVICE_URL=http://task-service:5000  # Variable para la URL interna del task-service (posible error aquí, debería ser la URL del user-service)
+      - FLASK_ENV=production      # Variable para modo producción
     networks:
-      - backend
+      - backend                   # Conectado a la misma red interna 'backend'
     ports:
-      - "5002:5000"    # expone puerto 5002 en host, 5000 en contenedor
+      - "5002:5000"               # Expone puerto 5000 del contenedor en puerto 5002 del host
 
   nginx-proxy:
-    image: jc21/nginx-proxy-manager:latest
+    image: jc21/nginx-proxy-manager:latest  # Usa una imagen oficial de nginx proxy manager para manejar proxy reverso y SSL
     ports:
-      - "80:80"
-      - "81:81"
-      - "443:443"
+      - "80:80"       # Puerto HTTP estándar expuesto en el host
+      - "81:81"       # Puerto para acceso a la interfaz web de administración de Nginx Proxy Manager
+      - "443:443"     # Puerto HTTPS estándar expuesto en el host
     volumes:
-      - ./data/nginx/data:/data
-      - ./data/nginx/letsencrypt:/etc/letsencrypt
+      - ./data/nginx/data:/data             # Volumen para datos persistentes de configuración de Nginx Proxy Manager
+      - ./data/nginx/letsencrypt:/etc/letsencrypt  # Volumen para certificados SSL gestionados por Let's Encrypt
     networks:
-      - backend
+      - backend      # En la red interna para comunicarse con otros servicios si es necesario
 
 networks:
   backend:
-    driver: bridge
+    driver: bridge  # Define la red llamada backend como una red bridge, para aislamiento y comunicación entre servicios
