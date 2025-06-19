@@ -6,32 +6,10 @@ Este proyecto contiene dos microservicios construidos con Flask:
 
 Ambos servicios se ejecutan en contenedores Docker y están expuestos a través de un proxy reverso Nginx Proxy Manager.
 
----
-
 ## Requisitos
 
 - Docker
 - Docker Compose
-
----
-
-## Estructura
-
-/
-├── user-service/
-│ ├── app.py
-│ └── data/
-├── task-service/
-│ ├── app.py
-│ └── data/
-├── data/
-│ └── nginx/
-│ ├── data/
-│ └── letsencrypt/
-├── docker-compose.yml
-└── README.md
-
----
 
 ## Iniciar el proyecto
 
