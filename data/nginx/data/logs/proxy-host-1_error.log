@@ -1,0 +1,1 @@
+2025/06/19 04:59:07 [error] 218#218: *47 localhost could not be resolved (3: Host not found), client: 172.19.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/api/users/"

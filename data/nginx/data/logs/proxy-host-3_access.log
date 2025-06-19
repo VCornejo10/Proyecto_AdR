@@ -1,0 +1,8 @@
+[19/Jun/2025:05:40:22 +0000] - 200 200 - GET http tasks.localhost "/health" [Client 172.19.0.1] [Length 16] [Gzip -] [Sent-to task-service] "curl/8.12.1" "-"
+[19/Jun/2025:05:40:36 +0000] - 404 404 - POST http tasks.localhost "/api/tasks/" [Client 172.19.0.1] [Length 207] [Gzip -] [Sent-to task-service] "curl/8.12.1" "-"
+[19/Jun/2025:05:42:54 +0000] - 404 404 - POST http tasks.localhost "/api/tasks/" [Client 172.19.0.1] [Length 207] [Gzip -] [Sent-to task-service] "curl/8.12.1" "-"
+[19/Jun/2025:05:48:27 +0000] - 404 404 - POST http tasks.localhost "/api/tasks/" [Client 172.19.0.1] [Length 207] [Gzip -] [Sent-to task-service] "curl/8.12.1" "-"
+[19/Jun/2025:05:49:46 +0000] - 404 404 - GET http tasks.localhost "/api/tasks/" [Client 172.19.0.1] [Length 207] [Gzip -] [Sent-to task-service] "curl/8.12.1" "-"
+[19/Jun/2025:05:49:48 +0000] - 404 404 - GET http tasks.localhost "/api/tasks/" [Client 172.19.0.1] [Length 207] [Gzip -] [Sent-to task-service] "curl/8.12.1" "-"
+[19/Jun/2025:05:49:54 +0000] - 404 404 - GET http tasks.localhost "/api/tasks/" [Client 172.19.0.1] [Length 207] [Gzip -] [Sent-to task-service] "curl/8.12.1" "-"
+[19/Jun/2025:05:53:32 +0000] - 200 200 - GET http tasks.localhost "/api/tasks/" [Client 172.19.0.1] [Length 3] [Gzip -] [Sent-to task-service] "curl/8.12.1" "-"
