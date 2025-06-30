@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify  # Importa Flask y utilidades para manejar requests y respuestas JSON
-import sqlite3                            # Para manejar base de datos SQLite
-import requests                          # Para hacer peticiones HTTP (consultar user-service)
-import os                                # Para leer variables de entorno
+import sqlite3                             # Para manejar base de datos SQLite
+import requests                            # Para hacer peticiones HTTP (consultar user-service)
+import os                                  # Para leer variables de entorno
 
 # Obtiene la URL del servicio de usuarios desde variable de entorno USER_SERVICE_URL,
 # si no está definida, usa 'http://task-service:5000' (pero esta línea será sobrescrita en la siguiente)
@@ -50,14 +50,14 @@ def create_task():
     data = request.json  # Obtiene el JSON enviado en la petición
     if not data or not data.get('title') or not data.get('user_id'):
         # Valida que el título y user_id estén presentes
-        return jsonify({"error": "Title and user_id are required"}), 400
+        return jsonify({"error": "Title y user_id requeridos"}), 400
     if 'status' in data and data['status'] not in ['pendiente', 'en progreso', 'completada']:
         # Valida que el status sea uno de los permitidos si se especifica
-        return jsonify({"error": "Invalid status"}), 400
+        return jsonify({"error": "Estado invalido"}), 400
     status = data.get('status', 'pendiente')  # Por defecto, el status es 'pendiente'
     if not user_exists(data['user_id']):
         # Verifica que el usuario exista antes de crear la tarea
-        return jsonify({"error": "User does not exist"}), 400
+        return jsonify({"error": "Usuario no existe"}), 400
     # Inserta la nueva tarea en la base de datos
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
@@ -99,7 +99,7 @@ def get_task(task_id):
         return jsonify({"id": row[0], "title": row[1], "status": row[2], "user_id": row[3]})
     else:
         # Si no existe, devuelve error 404
-        return jsonify({"error": "Task not found"}), 404
+        return jsonify({"error": "Tarea no encontrada"}), 404
 
 @app.route('/api/tasks/<int:task_id>', methods=['PUT'])
 def update_task(task_id):
@@ -107,10 +107,10 @@ def update_task(task_id):
     data = request.json
     if not data or 'status' not in data:
         # Valida que el campo status esté presente
-        return jsonify({"error": "Status is required"}), 400
+        return jsonify({"error": "Status es requerido"}), 400
     if data['status'] not in ['pendiente', 'en progreso', 'completada']:
         # Valida que el status sea válido
-        return jsonify({"error": "Invalid status"}), 400
+        return jsonify({"error": "Estado invalido"}), 400
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     # Actualiza el estado de la tarea en la base de datos
@@ -120,7 +120,7 @@ def update_task(task_id):
     conn.close()
     if updated == 0:
         # Si no se actualizó ninguna fila, la tarea no existe
-        return jsonify({"error": "Task not found"}), 404
+        return jsonify({"error": "Tarea no existe"}), 404
     # Devuelve la tarea actualizada
     return jsonify({"id": task_id, "status": data['status']})
 

@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify  # Importa Flask y herramientas para manejar requests y respuestas JSON
-import sqlite3                            # Librería para manejar SQLite
-import re                                # Librería para expresiones regulares
-import os                                # Librería para manejo de variables de entorno
+import sqlite3                             # Librería para manejar SQLite
+import re                                  # Librería para expresiones regulares
+import os                                  # Librería para manejo de variables de entorno
 
 # Obtiene la URL del servicio de usuarios desde la variable de entorno USER_SERVICE_URL,
 # si no está definida usa 'http://user-service:5000' como valor por defecto.
@@ -40,10 +40,10 @@ def create_user():
     data = request.json  # Obtiene el JSON enviado en la petición
     if not data or not data.get('name') or not data.get('email'):
         # Valida que vengan name y email
-        return jsonify({"error": "Name and email are required"}), 400
+        return jsonify({"error": "Name y email son requeridos"}), 400
     if not valid_email(data['email']):
         # Valida formato del email
-        return jsonify({"error": "Invalid email format"}), 400
+        return jsonify({"error": "Formato de correo invalido"}), 400
 
     try:
         # Inserta el usuario en la base de datos
@@ -58,7 +58,7 @@ def create_user():
         return jsonify({"id": user_id, "name": data['name'], "email": data['email']}), 201
     except sqlite3.IntegrityError:
         # Si el email ya existe (restricción UNIQUE) devuelve error 409
-        return jsonify({"error": "Email already exists"}), 409
+        return jsonify({"error": "Correo ya existe en la BD"}), 409
 
 @app.route('/api/users/', methods=['GET'])
 def get_users():
@@ -81,7 +81,7 @@ def get_user(user_id):
     if row:
         return jsonify({"id": row[0], "name": row[1], "email": row[2]})
     else:
-        return jsonify({"error": "User not found"}), 404  # Usuario no existe
+        return jsonify({"error": "Usuario no encontrado"}), 404  # Usuario no existe
 
 if __name__ == '__main__':
     init_db()  # Inicializa la base de datos al arrancar la app
