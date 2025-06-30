@@ -39,7 +39,7 @@ def user_exists(user_id):
         # Si falla la petición, asume que el usuario no existe o servicio no está disponible
         return False
 
-@app.route('/health')
+@app.route('/api/tasks/health')
 def health():
     # Endpoint para verificar que el servicio está activo
     return jsonify({"status": "ok"})

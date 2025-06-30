@@ -29,7 +29,7 @@ def valid_email(email):
     regex = r'^\S+@\S+\.\S+$'  # Al menos un caracter no espacio antes y después de '@' y un punto
     return re.match(regex, email)
 
-@app.route('/health')
+@app.route('/api/users/health')
 def health():
     # Ruta para chequear que el servicio está activo
     return jsonify({"status": "ok"})

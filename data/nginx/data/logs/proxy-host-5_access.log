@@ -1,0 +1,6 @@
+[30/Jun/2025:03:18:13 +0000] - 502, 502 502 - POST http localhost "/api/users/" [Client 172.19.0.1] [Length 154] [Gzip -] [Sent-to localhost] "curl/8.12.1" "-"
+[30/Jun/2025:03:18:51 +0000] - 502, 502 502 - GET http localhost "/api/users/" [Client 172.19.0.1] [Length 154] [Gzip -] [Sent-to localhost] "curl/8.12.1" "-"
+[30/Jun/2025:03:22:53 +0000] - 200 200 - GET http localhost "/api/users/" [Client 172.19.0.1] [Length 112] [Gzip -] [Sent-to localhost] "curl/8.12.1" "-"
+[30/Jun/2025:03:23:04 +0000] - 404 404 - GET http localhost "/api/users/healt" [Client 172.19.0.1] [Length 207] [Gzip -] [Sent-to localhost] "curl/8.12.1" "-"
+[30/Jun/2025:03:23:24 +0000] - 200 200 - GET http localhost "/api/users/health" [Client 172.19.0.1] [Length 16] [Gzip -] [Sent-to localhost] "curl/8.12.1" "-"
+[30/Jun/2025:03:23:33 +0000] - 200 200 - GET http localhost "/api/tasks/health" [Client 172.19.0.1] [Length 16] [Gzip -] [Sent-to localhost] "curl/8.12.1" "-"

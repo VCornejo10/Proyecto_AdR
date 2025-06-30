@@ -5,3 +5,4 @@
 [19/Jun/2025:04:55:20 +0000] 404 - GET http localhost "/api/users/health" [Client 172.19.0.1] [Length 150] [Gzip -] "curl/8.12.1" "-"
 [19/Jun/2025:04:55:48 +0000] 404 - GET http localhost "/api/users/health" [Client 172.19.0.1] [Length 150] [Gzip -] "curl/8.12.1" "-"
 [19/Jun/2025:04:56:29 +0000] 404 - GET http localhost "/api/users" [Client 172.19.0.1] [Length 150] [Gzip -] "curl/8.12.1" "-"
+[30/Jun/2025:03:18:42 +0000] 404 - GET http users.localhost "/api/users/" [Client 172.19.0.1] [Length 150] [Gzip -] "curl/8.12.1" "-"
